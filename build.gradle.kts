@@ -1,8 +1,9 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "1.9.25"
+    kotlin("jvm") version "2.2.20"
+    kotlin("plugin.spring") version "2.2.0"
     id("org.springframework.boot") version "3.5.6"
     id("io.spring.dependency-management") version "1.1.7"
+    id("io.kotest") version "6.0.3"
 }
 
 group = "com.project"
@@ -27,7 +28,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    //DB
+    // DB
     runtimeOnly("com.mysql:mysql-connector-j")
 
     
@@ -35,6 +36,11 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:0.56.0")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.56.0")
     implementation("org.jetbrains.exposed:exposed-java-time:0.56.0")
+
+    // kotest
+    testImplementation("io.kotest:kotest-framework-engine:6.0.3")
+    testImplementation("io.kotest:kotest-assertions-core:6.0.3")
+    testImplementation("io.kotest:kotest-runner-junit5:6.0.3")
 }
 
 kotlin {
@@ -43,6 +49,7 @@ kotlin {
     }
 }
 
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+    systemProperty("kotest.framework.config.fqn", "com.project.immersionstudy.kotest.config.KotestProjectConfig")
 }
