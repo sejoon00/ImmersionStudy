@@ -1,5 +1,6 @@
 package com.project.immersionstudy.kotlin.Type
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
@@ -22,6 +23,12 @@ class StringTest : FunSpec({
 //        val str2 = 1 + "abc" 얘는 안됨
 
         str shouldBe "abc1"
+    }
+
+    test("문자열의 없는 idx를 참조하면 예외가 터진다.") {
+        val str = "123"
+
+        shouldThrow<IndexOutOfBoundsException> { str[3] }
     }
 
 }) {
