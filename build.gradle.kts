@@ -30,6 +30,7 @@ dependencies {
 
     // DB
     runtimeOnly("com.mysql:mysql-connector-j")
+    testImplementation("com.h2database:h2")
 
     
     implementation("org.jetbrains.exposed:exposed-core:0.56.0")
@@ -51,5 +52,5 @@ kotlin {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
-    systemProperty("kotest.framework.config.fqn", "com.project.immersionstudy.kotest.config.KotestProjectConfig")
+//    systemProperty("kotest.framework.config.fqn", "com.project.immersionstudy.kotest.config.KotestProjectConfig")
 }
