@@ -27,6 +27,9 @@ class ArrayCreateTest: FunSpec({
 
         intArray shouldBe listOf(0, 0, 0)
         lambaArray shouldBe listOf(0, 1, 4)
+
+        val booleanArray = BooleanArray(3)
+        booleanArray shouldBe arrayOf(false, false, false)
     }
 
     test("중첩 배열을 만들 수 있다.") {
