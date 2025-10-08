@@ -1,9 +1,7 @@
 package com.project.immersionstudy.kotlin.Collections
 
 import io.kotest.core.spec.style.FunSpec
-import io.kotest.inspectors.filterMatching
 import io.kotest.matchers.shouldBe
-import java.util.SortedSet
 
 class ListTest: FunSpec({
     test("List를 생성할 수 있다.") {
@@ -13,6 +11,9 @@ class ListTest: FunSpec({
         // mutable List
         val stringList = mutableListOf(1, 2, 3)
         val complexList= mutableListOf("abc", 1)
+
+        val list = MutableList<Int>(3) { 0 }
+        list.maxOrNull()
     }
 
     test("List를 추가할 수 있다.") {
@@ -213,7 +214,6 @@ class ListTest: FunSpec({
         map shouldBe mapOf(0 to "a", 1 to "b", 2 to "c", 3 to "d")
 
     }
-
 })
 
 data class User(
