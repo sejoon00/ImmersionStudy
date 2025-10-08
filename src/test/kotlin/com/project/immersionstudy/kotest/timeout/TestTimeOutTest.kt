@@ -12,23 +12,37 @@ class TestTimeOutTest: DescribeSpec({
     invocationTimeout = 200
 
     describe("Timeout 설정 테스트") {
-        it("설정된 timeout을 넘으면 테스트가 실패한다.").config(timeout = 100.milliseconds) {
-            delay(200) // 0.2초 대기
-        }
-
-        it("설정된 timeout 이내에 끝나면 테스트가 성공한다.").config(timeout = 200.milliseconds) {
-            delay(100) // 0.1초 대기
-        }
-
-        it("it 테스트는 invocationTimeout 이내에 끝나야 한다.") {
+        xit("blockingTest를 설정하지 않으면 thread sleep 이후에 실패한다.").config(timeout = 200.milliseconds) {
             Thread.sleep(300) // 0.3초 대기
         }
 
-        it("it 테스트는 invocationTimeout 이내에 끝나야 한다.") {
+        xit("blockingTest를 설정하면 즉시 실패한다.").config(blockingTest = true, timeout = 200.milliseconds) {
+            Thread.sleep(300) // 0.3초 대기
+        }
+
+        it("각 테스트는 직접 설정한 invocationTimeout 이내에 끝나야 한다.").config(invocations = 2, invocationTimeout = 200.milliseconds) {
+            Thread.sleep(300) // 0.3초 대기
+        }
+
+        xit("delay - it 테스트는 invocationTimeout 이내에 끝나야 한다.") {
             delay(300) // 0.3초 대기
         }
 
-        it("각 테스트는 직접 설정한 invocationTimeout 이내에 끝나야 한다.").config(invocations = 2, invocationTimeout = 300.milliseconds) {
+
+        xit("설정된 timeout을 넘으면 테스트가 실패한다.").config(timeout = 100.milliseconds) {
+            delay(200) // 0.2초 대기
+        }
+
+        xit("설정된 timeout 이내에 끝나면 테스트가 성공한다.").config(timeout = 200.milliseconds) {
+            delay(100) // 0.1초 대기
+        }
+
+        xit("thread sleep- it 테스트는 invocationTimeout 이내에 끝나야 한다.").config(blockingTest = true, timeout = 200.milliseconds) {
+            Thread.sleep(300) // 0.3초 대기
+        }
+
+
+        xit("각 테스트는 직접 설정한 invocationTimeout 이내에 끝나야 한다.").config(invocations = 2, invocationTimeout = 300.milliseconds) {
             delay(200) // 0.2초 대기
         }
     }

@@ -23,6 +23,7 @@ fun Posts.save(model: Post): Post {
         val id = Posts.insertAndGetId {
             it[content] = model.content
             it[type] = model.type
+            it[publisherId] = model.publisherId
             it[authorId] = model.authorId
             it[createdAt] = model.createdAt
             it[updatedAt] = model.updatedAt
@@ -33,6 +34,7 @@ fun Posts.save(model: Post): Post {
         Posts.update {
             it[content] = model.content
             it[type] = model.type
+            it[publisherId] = model.publisherId
             it[updatedAt] = model.updatedAt
             it[deletedAt] = model.deletedAt
         }
