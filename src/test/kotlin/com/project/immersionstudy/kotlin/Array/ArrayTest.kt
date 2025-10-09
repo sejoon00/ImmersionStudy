@@ -52,11 +52,16 @@ class ArrayTest : FunSpec({
         }
         println(list.joinToString(""))
 
+        val arr2 = arrayOf(intArrayOf(1, 2), intArrayOf(2, 3), intArrayOf(1, 3))
+        val sortedWith: List<IntArray> = arr2.sortedWith(compareBy<IntArray> { it[0] }.thenByDescending { it[1] })
+        sortedWith[0] shouldBe listOf(1, 3)
+
     }
 
     test("배열을 filtering할 수 있다.") {
         val arr = intArrayOf(3, 0, 6, 1, 5)
         arr.filter{ it > 3}
+
     }
 }) {
 }
