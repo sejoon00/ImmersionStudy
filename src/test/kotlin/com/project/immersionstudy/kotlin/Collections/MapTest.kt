@@ -83,6 +83,9 @@ class MapTest : FunSpec({
             "k"
         }
         map[11] shouldBe null
+
+        map.computeIfAbsent(12) { _ -> "a"}
+        map[12] shouldBe "a"
     }
 
     test("Map을 순회할 수 있다") {
@@ -91,7 +94,6 @@ class MapTest : FunSpec({
         for( e in map) {
             println(e.key to e.value)
         }
-
     }
 
     test("Map을 정렬할 수 있다.") {
