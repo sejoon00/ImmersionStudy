@@ -13,7 +13,7 @@ class ListTest: FunSpec({
         val complexList= mutableListOf("abc", 1)
 
         val list = MutableList<Int>(3) { 0 }
-        list.maxOrNull()
+
     }
 
     test("List를 추가할 수 있다.") {

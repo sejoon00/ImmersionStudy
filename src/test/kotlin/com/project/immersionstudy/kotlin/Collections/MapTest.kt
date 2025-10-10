@@ -2,17 +2,19 @@ package com.project.immersionstudy.kotlin.Collections
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import java.util.SortedMap
 
 class MapTest : FunSpec({
 
     test("Map을 생성할 수 있다.") {
-        val map = mutableMapOf(1 to "a", 2 to "b")
+        val map = mutableMapOf<Int, String>(1 to "a", 2 to "b")
         map[1] shouldBe "a"
         map.get(2) shouldBe "b"
 
         // key가 존재하지 않을 때 기본 값을 지정할 수 있다.
         map.getOrDefault(3, "none") shouldBe "none"
+
     }
 
     test("Map에 요소를 추가할 수 있다.") {
@@ -28,14 +30,36 @@ class MapTest : FunSpec({
     test("Map의 요소를 수정할 수 있다.") {
         val map = mutableMapOf(1 to "a", 2 to "b", 3 to "c")
 
-        map.replace(2, "B")
-        map[2] shouldBe "B"
+        map.replace(2, map[2] + "B")
+        map[2] shouldBe "bB"
 
         map.remove(2)
         map[2] shouldBe null
 
         map -= 1
         map[1] shouldBe null
+
+    }
+
+    test("Map의 getOr 메서드를 사용해 해당 key가 없을 때 로직을 반영할 수 있다") {
+        val map = mutableMapOf(1 to "a", 2 to "b", 3 to "c")
+
+        // 특정 key 값이 있으면 가져오고 없으면 default를 return
+        val value = map.getOrDefault(4, "d")
+        map[4] shouldNotBe "d"
+        value shouldBe "d"
+
+        // 특정 key 값이 있으면 가져오고 없으면 Put function을 실행하고 그 값을 Return
+        val value2 = map.getOrPut(4) { "d" }
+        map[4] shouldBe "d"
+        value2 shouldBe "d"
+
+        // 특정 key 값이 있으면 가져오고 없으면 function을 실행하고 그 function return값을 return
+        val value3 = map.getOrElse(5) {
+            map[5] = "e"
+        }
+        map[5] shouldBe "e"
+        value3 shouldBe kotlin.Unit
     }
 
     test("Map의 key, value Set으로 가져올 수 있다.") {
@@ -102,6 +126,11 @@ class MapTest : FunSpec({
         val toSortedMap: SortedMap<Int, String> = map.toSortedMap()
         toSortedMap shouldBe mapOf(1 to "a", 2 to "b", 3 to "c")
         toSortedMap shouldBe mapOf(2 to "b", 1 to "a", 3 to "c")
+    }
+
+    test("Map을 출력할 수 있다.") {
+        val map = mutableMapOf(2 to "b", 1 to "a", 3 to "c")
+        println(map.toString())
     }
 
 })
