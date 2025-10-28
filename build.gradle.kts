@@ -28,6 +28,9 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+    //coroutine
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+
     // DB
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("com.h2database:h2")
@@ -42,6 +45,9 @@ dependencies {
     testImplementation("io.kotest:kotest-framework-engine:6.0.3")
     testImplementation("io.kotest:kotest-assertions-core:6.0.3")
     testImplementation("io.kotest:kotest-runner-junit5:6.0.3")
+    testImplementation("io.kotest:kotest-extensions-testcontainers:6.0.3")
+
+    testImplementation("org.testcontainers:mysql:1.19.8")
 }
 
 kotlin {

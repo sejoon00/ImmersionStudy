@@ -34,6 +34,7 @@ class ArrayCreateTest: FunSpec({
 
     test("중첩 배열을 만들 수 있다.") {
         val array: Array<IntArray> = Array(3) { IntArray(3) { it * it} }
+        val arr = Array(3) { IntArray(3) }
         array[0][1] = 1
         println(array.joinToString("\n") { it.joinToString() })
 

@@ -130,7 +130,15 @@ class MapTest : FunSpec({
 
     test("Map을 출력할 수 있다.") {
         val map = mutableMapOf(2 to "b", 1 to "a", 3 to "c")
+
         println(map.toString())
     }
 
+    test("Map은 배열 Key를 내부요소로 판단한다.") {
+        val map = mutableMapOf<IntArray, Int>(intArrayOf(1, 2) to 1)
+        map[intArrayOf(1, 2)] shouldBe null
+
+        val map1 = mutableMapOf(listOf(1,2) to 1)
+        map1[listOf(1,2)] shouldBe 1
+    }
 })

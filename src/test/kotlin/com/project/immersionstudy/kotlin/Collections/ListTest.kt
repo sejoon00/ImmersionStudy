@@ -16,6 +16,13 @@ class ListTest: FunSpec({
 
     }
 
+    test("중첩 리스트를 생성할 수 있다"){
+        // 비어 있는 n개의 리스트를 가진 중첩 리스트
+        val list = List(3) { mutableListOf<Int>() }
+        println(list)
+
+    }
+
     test("List를 추가할 수 있다.") {
         // mutable List
         val intList = mutableListOf(1, 2, 3)
@@ -129,6 +136,9 @@ class ListTest: FunSpec({
             print(list[idx])
         }
 
+        val list2 = listOf("1", "2")
+        for((idx, i) in list2.withIndex())
+
         list  shouldBe listOf(2, 3, 4)
     }
 
@@ -212,6 +222,7 @@ class ListTest: FunSpec({
         val list = listOf("a", "b", "c", "d")
         val map= list.associate { list.indexOf(it) to it }
         map shouldBe mapOf(0 to "a", 1 to "b", 2 to "c", 3 to "d")
+
 
     }
 })
