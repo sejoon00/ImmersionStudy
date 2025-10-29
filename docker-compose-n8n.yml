@@ -22,6 +22,15 @@ services:
     networks:
       - traefik_net
 
+  crawl4ai:
+    image: unclecode/crawl4ai:latest
+    container_name: crawl4ai
+    restart: always
+    ports:
+      - "9999:8000"
+    networks:
+      - n8n_net
+
   postgres:
     image: pgvector/pgvector:pg18
     container_name: n8n_postgres
