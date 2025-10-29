@@ -29,7 +29,6 @@ jobs:
               echo "Merge successful, no conflicts detected."
             fi
             
-            docker compose --env-file .env-n8n -f docker-compose-n8n.yml pull
-            docker compose --env-file .env-n8n -f docker-compose-n8n.yml down
-            docker compose --env-file .env-n8n -f docker-compose-n8n.yml up -d
+            docker compose --env-file .env-n8n -f docker-compose-n8n.yml pull n8n
+            docker compose --env-file .env-n8n -f docker-compose-n8n.yml up -d --no-deps --wait n8n
 

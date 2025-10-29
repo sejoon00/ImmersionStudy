@@ -52,6 +52,11 @@ services:
     restart: always
     env_file:
       - .env-n8n
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -qO- http://localhost:5678/healthz || exit 1" ]
+      interval: 10s
+      timeout: 3s
+      retries: 20
     environment:
       DB_TYPE: ${DB_TYPE}
       DB_POSTGRESDB_HOST: ${DB_POSTGRESDB_HOST}
