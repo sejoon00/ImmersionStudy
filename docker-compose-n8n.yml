@@ -23,7 +23,7 @@ services:
       - traefik_net
 
   postgres:
-    image: ankane/pgvector:pg15
+    image: pgvector/pgvector:pg18
     container_name: n8n_postgres
     restart: always
     env_file:
