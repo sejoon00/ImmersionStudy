@@ -27,7 +27,7 @@ services:
     container_name: crawl4ai
     restart: always
     ports:
-      - "9999:8000"
+      - "11235:11235"
     networks:
       - n8n_net
 
