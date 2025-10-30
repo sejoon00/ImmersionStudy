@@ -1,27 +1,6 @@
 version: "3.8"
 
 services:
-  traefik:
-    image: traefik:v2.10
-    container_name: traefik
-    restart: always
-    command:
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.mytlsresolver.acme.email=${SSL_EMAIL}"
-      - "--certificatesresolvers.mytlsresolver.acme.storage=/letsencrypt/acme.json"
-      - "--certificatesresolvers.mytlsresolver.acme.tlschallenge=true"
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - traefik_data:/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - traefik_net
-
   crawl4ai:
     image: unclecode/crawl4ai:latest
     container_name: crawl4ai
@@ -99,9 +78,8 @@ networks:
   n8n_net:
     driver: bridge
   traefik_net:
-    driver: bridge
+    external: true
 
 volumes:
-  traefik_data:
   pg_data:
   n8n_data:
