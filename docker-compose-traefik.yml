@@ -26,6 +26,7 @@ services:
 
 networks:
   traefik_net:
+    name: traefik_net
     driver: bridge
 
 volumes:
