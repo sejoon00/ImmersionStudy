@@ -15,6 +15,8 @@ services:
       - "--certificatesresolvers.mytlsresolver.acme.email=${SSL_EMAIL}"
       - "--certificatesresolvers.mytlsresolver.acme.storage=/letsencrypt/acme.json"
       - "--certificatesresolvers.mytlsresolver.acme.tlschallenge=true"
+      - "--log.level=DEBUG"
+      - "--accesslog=true"
     ports:
       - "80:80"
       - "443:443"
