@@ -70,6 +70,8 @@ services:
       - n8n_data:/home/node/.n8n
     depends_on:
       - postgres
+    ports:
+      - "5678:5678"
     networks:
       - n8n_net
       - traefik_net
